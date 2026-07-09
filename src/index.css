@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", system-ui, -apple-system, sans-serif;
+    background-color: #08080b;
+    color: #e7e7ea;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .font-mono-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  /* thin custom scrollbar for the dark UI */
+  .ve-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .ve-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 9999px;
+  }
+  .ve-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ambient background grid + glow */
+.ve-grid-bg {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 45, 85, 0.12), transparent 42%),
+    radial-gradient(circle at 82% 8%, rgba(124, 58, 237, 0.14), transparent 45%),
+    radial-gradient(circle at 50% 120%, rgba(16, 185, 129, 0.1), transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 42px 42px, 42px 42px;
+}
+
+@keyframes ve-float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+}
+
+@keyframes ve-pulse-live {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+.ve-live-dot {
+  animation: ve-pulse-live 1.3s ease-in-out infinite;
+}
+
+@keyframes ve-ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.ve-ticker {
+  animation: ve-ticker 26s linear infinite;
+}
