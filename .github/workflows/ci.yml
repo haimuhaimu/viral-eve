@@ -20,7 +20,8 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
+      - run: node --version && npm --version
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run lint
