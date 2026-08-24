@@ -253,7 +253,12 @@ export function simulateContent(
     effects.stress * 0.85 + Math.max(0, effects.controversy - 8) * 0.4 - 1.2,
   );
 
-  const newTags = deriveTags(state.tags, effects, state.metrics, dealAccepted);
+  const metricsForTags: CreatorMetrics = {
+    ...state.metrics,
+    expertise: clamp100(state.metrics.expertise + expertiseDelta),
+    personaDrift: clamp100(state.metrics.personaDrift + driftDelta),
+  };
+  const newTags = deriveTags(state.tags, effects, metricsForTags, dealAccepted);
 
   const creatorLine = pickCreatorLine(
     { viralHit, followerDelta, driftDelta, trustDelta, expertiseDelta },
